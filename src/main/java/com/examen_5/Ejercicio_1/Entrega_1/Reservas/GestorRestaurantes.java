@@ -6,19 +6,19 @@ import com.examen_5.Ejercicio_1.Entrega_1.Restaurante.Restaurante;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorReservas {
-    private static volatile GestorReservas instancia;
+public class GestorRestaurantes {
+    private static volatile GestorRestaurantes instancia;
     private List<Restaurante> restaurantes;
 
-    private GestorReservas() {
+    private GestorRestaurantes() {
         restaurantes = new ArrayList<>();
     }
 
-    public static GestorReservas obtenerInstancia() {
+    public static GestorRestaurantes obtenerInstancia() {
         if (instancia == null) {
-            synchronized (GestorReservas.class) {
+            synchronized (GestorRestaurantes.class) {
                 if (instancia == null) {
-                    instancia = new GestorReservas();
+                    instancia = new GestorRestaurantes();
                 }
             }
         }

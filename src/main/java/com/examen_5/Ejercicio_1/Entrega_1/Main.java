@@ -1,13 +1,13 @@
 package com.examen_5.Ejercicio_1.Entrega_1;
 
 import com.examen_5.Ejercicio_1.Entrega_1.Factory.RestaurantesFactory;
-import com.examen_5.Ejercicio_1.Entrega_1.Reservas.GestorReservas;
+import com.examen_5.Ejercicio_1.Entrega_1.Reservas.GestorRestaurantes;
 import com.examen_5.Ejercicio_1.Entrega_1.Restaurante.Restaurante;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            GestorReservas gestor = GestorReservas.obtenerInstancia();
+            GestorRestaurantes gestor = GestorRestaurantes.obtenerInstancia();
 
             Restaurante rapido = RestaurantesFactory.obtenerRestaurante("rapido", "Burger Veloz");
             Restaurante tematico = RestaurantesFactory.obtenerRestaurante("tematico", "Cueva del Pirata");
