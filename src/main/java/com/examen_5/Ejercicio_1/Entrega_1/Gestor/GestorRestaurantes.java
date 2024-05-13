@@ -1,4 +1,4 @@
-package com.examen_5.Ejercicio_1.Entrega_1.Reservas;
+package com.examen_5.Ejercicio_1.Entrega_1.Gestor;
 
 
 import com.examen_5.Ejercicio_1.Entrega_1.Restaurante.Restaurante;

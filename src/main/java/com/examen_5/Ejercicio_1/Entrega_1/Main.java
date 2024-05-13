@@ -1,7 +1,7 @@
 package com.examen_5.Ejercicio_1.Entrega_1;
 
 import com.examen_5.Ejercicio_1.Entrega_1.Factory.RestaurantesFactory;
-import com.examen_5.Ejercicio_1.Entrega_1.Reservas.GestorRestaurantes;
+import com.examen_5.Ejercicio_1.Entrega_1.Gestor.GestorRestaurantes;
 import com.examen_5.Ejercicio_1.Entrega_1.Restaurante.Restaurante;
 
 public class Main {
