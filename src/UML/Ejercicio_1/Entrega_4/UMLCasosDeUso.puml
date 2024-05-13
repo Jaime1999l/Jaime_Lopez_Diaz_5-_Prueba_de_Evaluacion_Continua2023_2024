@@ -1,22 +1,18 @@
 @startuml
-'https://plantuml.com/use-case-diagram
 
-:Main Admin: as Admin
-(Use the application) as (Use)
+left to right direction
+skinparam packageStyle rectangle
 
-User -> (Start)
-User --> (Use)
+actor Usuario
 
-Admin ---> (Use)
+rectangle "Gestión de Restaurantes" {
+    usecase "Agregar Restaurante" as UC1
+    usecase "Eliminar Restaurante" as UC2
+}
 
-note right of Admin : This is an example.
+Usuario --> UC1
+Usuario --> UC2
+UC1 --> ControladorRestaurantes
+UC2 --> ControladorRestaurantes
 
-note right of (Use)
-A note can also
-be on several lines
-end note
-
-note "This note is connected\nto several objects." as N2
-(Start) .. N2
-N2 .. (Use)
 @enduml

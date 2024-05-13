@@ -1,27 +1,81 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Mesa {
+    - numero: int
+    - estado: EstadoMesa
+    + Mesa(int numero)
+    + cambiarEstado(): void
+    + getNumero(): int
+    + getEstado(): EstadoMesa
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+enum EstadoMesa {
+    LIBRE
+    RESERVADA
+    OCUPADA
+    + siguienteEstado(estadoActual: EstadoMesa): EstadoMesa
 }
+
+class MediadorConcreto {
+    - colaboradores: List<Colaborador>
+    + agregarColaborador(colaborador: Colaborador): void
+    + enviar(mensaje: String, emisor: Colaborador): void
+}
+
+interface Mediador {
+    + enviar(mensaje: String, colaborador: Colaborador): void
+}
+
+abstract class Colaborador {
+    - mediador: Mediador
+    + Colaborador(mediador: Mediador)
+    + recibir(mensaje: String): void
+}
+
+class ServicioCliente {
+    + ServicioCliente(mediador: Mediador)
+    + recibir(mensaje: String): void
+}
+
+class Entrega {
+    + Entrega(mediador: Mediador)
+    + recibir(mensaje: String): void
+}
+
+class Cocina {
+    + Cocina(mediador: Mediador)
+    + recibir(mensaje: String): void
+}
+
+interface Comando {
+    + ejecutar(): void
+}
+
+class ReservarMesa {
+    - mesa: Mesa
+    + ReservarMesa(mesa: Mesa)
+    + ejecutar(): void
+}
+
+class CancelarReserva {
+    - mesa: Mesa
+    + CancelarReserva(mesa: Mesa)
+    + ejecutar(): void
+}
+
+class OrdenarComida {
+    - mesa: Mesa
+    + OrdenarComida(mesa: Mesa)
+    + ejecutar(): void
+}
+
+Mesa "1" --> "1" EstadoMesa
+MediadorConcreto "1" --> "*" Colaborador
+Colaborador <|-- ServicioCliente
+Colaborador <|-- Entrega
+Colaborador <|-- Cocina
+Comando <|-- ReservarMesa
+Comando <|-- CancelarReserva
+Comando <|-- OrdenarComida
 
 @enduml

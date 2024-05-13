@@ -1,27 +1,55 @@
 @startuml
-'https://plantuml.com/class-diagram
+title Ejercicio 1 - Patrones de Construcción
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class GestorRestaurantes {
+    -instance: GestorRestaurantes
+    -restaurantes: List<Restaurante>
+    +getInstance(): GestorRestaurantes
+    +agregarRestaurante(restaurant: Restaurante): void
+    +obtenerRestaurantes(): List<Restaurante>
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Restaurante {
+    -nombre: String
+    -estrategiaServicio: EstrategiaServicio
+    +servir(): void
+    +establecerEstrategiaServicio(estrategia: EstrategiaServicio): void
 }
+
+class RestauranteLujo {
+}
+
+class RestauranteRapido {
+}
+
+class RestauranteTematico {
+}
+
+class RestaurantesFactory {
+    +obtenerRestaurante(tipo: String, nombre: String): Restaurante
+}
+
+interface EstrategiaServicio {
+    +servir(): void
+}
+
+class EstrategiaServicioLujo {
+}
+
+class EstrategiaServicioRapido {
+}
+
+class EstrategiaServicioTematico {
+}
+
+Restaurante <|-- RestauranteLujo
+Restaurante <|-- RestauranteRapido
+Restaurante <|-- RestauranteTematico
+EstrategiaServicio <|.. EstrategiaServicioLujo
+EstrategiaServicio <|.. EstrategiaServicioRapido
+EstrategiaServicio <|.. EstrategiaServicioTematico
+Restaurante "1" *-- "1" EstrategiaServicio : usa >
+RestaurantesFactory ..> Restaurante : crea >
+GestorRestaurantes "1" o-- "*" Restaurante : gestiona >
 
 @enduml

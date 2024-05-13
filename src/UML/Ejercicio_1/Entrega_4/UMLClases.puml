@@ -1,27 +1,45 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+interface ComponenteRestaurante {
+    + mostrarDetalles(): void
+    + agregar(componente: ComponenteRestaurante): void
+    + remover(componente: ComponenteRestaurante): void
+    + obtenerHijos(): List<ComponenteRestaurante>
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class VistaRestaurante {
+    + imprimirDetalles(componenteRestaurante: ComponenteRestaurante): void
 }
+
+class RestauranteIndividual {
+    - nombre: String
+    + RestauranteIndividual(nombre: String)
+    + mostrarDetalles(): void
+    + agregar(componente: ComponenteRestaurante): void
+    + remover(componente: ComponenteRestaurante): void
+    + obtenerHijos(): List<ComponenteRestaurante>
+}
+
+class GrupoRestaurantes {
+    - restaurantes: List<ComponenteRestaurante>
+    + mostrarDetalles(): void
+    + agregar(componente: ComponenteRestaurante): void
+    + remover(componente: ComponenteRestaurante): void
+    + obtenerHijos(): List<ComponenteRestaurante>
+}
+
+class ControladorRestaurantes {
+    - modelo: ComponenteRestaurante
+    - vista: VistaRestaurante
+    + ControladorRestaurantes(modelo: ComponenteRestaurante, vista: VistaRestaurante)
+    + actualizarVista(): void
+    + agregarRestaurante(restaurante: ComponenteRestaurante): void
+    + removerRestaurante(restaurante: ComponenteRestaurante): void
+}
+
+ComponenteRestaurante <|-- RestauranteIndividual
+ComponenteRestaurante <|-- GrupoRestaurantes
+ControladorRestaurantes --> VistaRestaurante
+ControladorRestaurantes --> ComponenteRestaurante
 
 @enduml

@@ -5,7 +5,7 @@ import com.examen_5.Ejercicio_1.Entrega_2.Notificacion.Usuarios.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SistemaNotificaciones implements Subject {
+public class SistemaNotificaciones implements Sujeto {
     private List<Observer> observers = new ArrayList<>();
     private String mensaje;
 

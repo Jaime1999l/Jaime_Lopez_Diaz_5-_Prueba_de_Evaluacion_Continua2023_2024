@@ -1,27 +1,57 @@
 @startuml
-'https://plantuml.com/class-diagram
+title Ejercicio 2 - Patrones de Estructuración
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+interface ComponenteRestaurante {
+    +mostrarDetalles(): void
+    +agregar(componente: ComponenteRestaurante): void
+    +remover(componente: ComponenteRestaurante): void
+    +obtenerHijos(): List<ComponenteRestaurante>
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class RestauranteIndividual {
+    -nombre: String
 }
+
+class GrupoRestaurantes {
+    -restaurantes: List<ComponenteRestaurante>
+}
+
+ComponenteRestaurante <|.. RestauranteIndividual
+ComponenteRestaurante <|.. GrupoRestaurantes
+ComponenteRestaurante "1" o-- "*" ComponenteRestaurante : contiene
+
+interface SistemaReservas {
+    +reservarMesa(): void
+}
+
+class SistemaReservasExterno {
+    +realizarReserva(): void
+}
+
+class AdapterReservas implements SistemaReservas {
+    -sistemaExterno: SistemaReservasExterno
+}
+
+SistemaReservas <|.. AdapterReservas
+AdapterReservas o-- SistemaReservasExterno
+
+interface Observador {
+    +actualizar(mensaje: String): void
+}
+
+interface Sujeto {
+    +suscribir(observador: Observador): void
+    +desuscribir(observador: Observador): void
+    +notificarObservadores(): void
+}
+
+class SistemaNotificaciones implements Sujeto {
+    -observadores: List<Observador>
+    -mensaje: String
+}
+
+Observador <|.. Cliente
+Sujeto <|.. SistemaNotificaciones
+Sujeto "1" o-- "*" Observador : notifica >
 
 @enduml
