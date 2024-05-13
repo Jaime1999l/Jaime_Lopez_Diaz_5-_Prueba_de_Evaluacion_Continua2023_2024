@@ -8,11 +8,11 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.examen_5</groupId>
+	<artifactId>Jaime_Lopez_Diaz_5-_Prueba_de_Evaluacion_Continua2023_2024</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Jaime_Lopez_Diaz_5-_Prueba_de_Evaluacion_Continua2023_2024</name>
+	<description>Jaime_Lopez_Diaz_5-_Prueba_de_Evaluacion_Continua2023_2024 project for Spring Boot</description>
 	<properties>
 		<java.version>22</java.version>
 	</properties>
